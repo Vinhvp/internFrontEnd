@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 export const HomeContainer = styled.div`
     padding: 37px 129px;
+    height: auto;
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1/2fr;
+    border-bottom: 2px solid #ececec;
+    border-top: 1px solid #ececec;
     grid-template-areas: 
     "h1 h1 h1 h1"
     "h2 h3 h4 h5";
