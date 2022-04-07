@@ -10,4 +10,9 @@ const Input = (props) => {
     );
 }
 
+Input.defaultProps = {
+    type: 'text',
+    placeholder: 'Enter something...'
+}
+
 export default Input;

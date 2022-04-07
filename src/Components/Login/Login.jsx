@@ -2,6 +2,7 @@ import React from 'react';
 import * as styled from "./Login.styled";
 import Input from '../Input/Input';
 import Link from '../Link/Link';
+import ButtonHome from './../ButtonHome/ButtonHome';
 
 class Login extends React.Component {
   constructor(props){
@@ -17,14 +18,6 @@ class Login extends React.Component {
 
                         <Input type="text" label="EMAIL" name="email" placeholder="Enter your email..." mb="24px"></Input>
                         <Input type="password" label="PASSWORD" name="password" placeholder="Enter your password..." mb="26px"></Input>
-                        {/* <styled.Email>
-                            <label htmlFor="email">E-MAIL</label>
-                            <input type="text" name="email" placeholder="Enter your email..."></input>
-                        </styled.Email>
-                        <styled.Password>
-                            <label htmlFor="password">PASSWORD</label>
-                            <input type="password" name="password" placeholder="Enter your password..."></input>
-                        </styled.Password> */}
                         <styled.Checkbox>
                             <div>
                                 <input type="checkbox" id="remember" name="rememberpassword" value="rememberPassword" style={{filter: "hue-rotate(180deg)", height: "15px", width: "15px" }}/>
@@ -36,7 +29,7 @@ class Login extends React.Component {
                             
                         </styled.Checkbox>
                     </form>
-                    <styled.Button>Log In</styled.Button>
+                    <ButtonHome name="Log In" bgcolor="var(--white-four);">Log In</ButtonHome>
                     <div style={{margin: "0 auto", textAlign:"center"}}>
                         <Link href="#" color="var(--greyish-brown)" text="Dont-have-an-account ?" size="14px" fontWeight="500"
                         style={{textAlign: "center"}}>

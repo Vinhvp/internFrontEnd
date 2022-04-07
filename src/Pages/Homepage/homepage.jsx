@@ -3,6 +3,7 @@ import Header from '../../Components/Header/Header';
 import Content from '../../Components/Content/Content';
 import Footer from '../../Components/Footer/Footer';
 import Login from '../../Components/Login/Login';
+import Register from '../../Components/Register/Register';
 
 
 const Home = () => {
@@ -11,7 +12,10 @@ const Home = () => {
             {/* <Header></Header>
             <Content></Content>
             <Footer></Footer> */}
-            <Login></Login>
+            {/* <Login></Login>  */}
+            <Register>
+                 
+            </Register> 
         </>
     );
 }

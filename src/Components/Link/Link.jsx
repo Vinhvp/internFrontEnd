@@ -10,5 +10,12 @@ const Link = (props) => {
         </>
      );
 }
- 
+Link.defaultProps = {
+    href:'#',
+    textDecor: 'underline',
+    sized:'12px',
+    color:'black',
+    fontWeight:'normal',
+    text:'bạn chưa điền'
+}
 export default Link;

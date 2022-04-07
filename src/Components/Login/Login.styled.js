@@ -45,18 +45,7 @@ export const Container = styled.div`
     width: 395px;
     margin: 0 auto;
 `
-export const Forgot = styled.a`
-    text-decoration: none;
-    font-family: Montserrat;
-    font-size: 14px;
-    font-weight: 600;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.57;
-    letter-spacing: normal;
-    text-align: right;
-    color: var(--greyish-brown);
-`
+
 export const Button = styled.button`
     margin-top: 46px;
     margin-bottom: 92px;
