@@ -14,6 +14,7 @@ export const InputT = styled.input`
 
 export const InputContainer = styled.div`
     margin-bottom: ${props=>props.mb};
+    margin-top: ${props=>props.mt};
     display: flex;
     flex-direction: column;
     label{

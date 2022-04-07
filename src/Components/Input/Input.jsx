@@ -3,7 +3,7 @@ import * as styled from "./Input.styled";
 const Input = (props) => {
     
     return (  
-        <styled.InputContainer mb={props.mb}>
+        <styled.InputContainer mb={props.mb} mt={props.mt}>
             <label htmlFor={props.label}>{props.label}</label>
             <styled.InputT type={props.type} name={props.name} placeholder={props.placeholder}/>
         </styled.InputContainer>
