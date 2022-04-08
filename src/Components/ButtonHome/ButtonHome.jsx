@@ -11,7 +11,8 @@ const ButtonHome = (props) => {
 }
 ButtonHome.defaultProps ={
     bgcolor: "var(--white-two)",
-    color: "var(--dark-grey)"
+    color: "var(--dark-grey)",
+    type: "submit"
 
 }
 export default ButtonHome;

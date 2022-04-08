@@ -39,12 +39,21 @@ export const Login = styled.div`
     align-items: center;
 `
 export const Loginbutton = styled.button`
+    font-weight: bold;
+    text-align: center;
     width: 120px;
     height: 35px;
     border-radius: 100px;
     border: solid 1px var(--pale-orange);
-    background: white;
+    background: var(--white);
+    color: var(--pale-orange);
     cursor:pointer;
+    transition: background 0.4s ease-in-out, color 0.4s ease-in-out;
+    &:hover{
+        background: var(--pale-orange);
+        color: var(--white);
+    }
+    
 `
 export const Navbar = styled.div`
     display: flex;

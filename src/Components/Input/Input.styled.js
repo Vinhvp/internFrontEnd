@@ -1,18 +1,24 @@
 import styled from 'styled-components';
 
-export const InputT = styled.input`
+export const Input = styled.input`
+    padding: 0 8px;
     width: 395px;
     height: 46px;
-    border: 0;
-    background-color: var(--white-two);
-    &:focus{
-        box-shadow: 0 0px 3px 0px var(--pumpkin-orange);
-        outline: 0;
-    }
-
+    border: ${(props)=> props.color};
+    background-color: var(--white-two);  
 `
 
 export const InputContainer = styled.div`
+    p{  
+        position: absolute;
+        margin: 0;
+        left: 7px;
+        bottom: -10px;
+        font-size: 10px;    
+        font-weight: 500;
+        color: var(--strawberry);
+    }
+    position: relative;
     margin-bottom: ${props=>props.mb};
     margin-top: ${props=>props.mt};
     display: flex;

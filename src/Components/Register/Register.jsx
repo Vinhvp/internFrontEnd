@@ -11,7 +11,7 @@ const Register = () => {
                 <styled.Container>
                     <form>
                         <Input label="NAME" name="name" placeholder="Enter your name..." mb="24px"></Input>
-                        <Input label="E-MAIL" name="password" placeholder="Enter your E-mail..." mb="24px"></Input>
+                        <Input type='email' label="EMAIL" name="password" placeholder="aware@example.com" mb="24px"></Input>
                         <Input type="password" label="PASSWORD" name="password" placeholder="Enter your password..." mb="26px"></Input>
                         <styled.Text>
                         
@@ -20,8 +20,8 @@ const Register = () => {
 
 
                         </styled.Text>
-                    </form>
                         <ButtonHome bgcolor="var( --pumpkin-orange)" name="Register" color='var(--white-two)' mt='51px' mb='70px'></ButtonHome>
+                    </form>
                     <div style={{textAlign: 'center'}}>
                         <p style={{display:"inline-block"}}>Do you have an account?</p>
                         <Link color='var( --pumpkin-orange)' text='Log In' fontWeight='bold'></Link>
