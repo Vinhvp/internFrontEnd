@@ -2,7 +2,7 @@ import styled from 'styled-components'
 export const HeaderNav = styled.div`
     color: #cccccc;
     padding: 0 129px;
-    border-bottom: 1px solid #ececec;
+    border-bottom: 2px solid #ececec;
     height: 66px;
     display: flex;
     justify-content: space-between;
@@ -50,7 +50,6 @@ export const Navbar = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid #ececec;
     height: 45px;
     transform: translateX(-30px);
 `
