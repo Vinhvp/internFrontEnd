@@ -1,20 +1,20 @@
 export function validateEmail(mail) 
     {
-        let tmp='';
         if(mail.length <= 0){
-            tmp = '';
+            return '';
         }
-        else if (!(/^([a-z])+([0-9]+)?@[a-z]+\.[a-z]+/g).test(mail) || (!(/^\s/g).test(mail))){
-            tmp = 'case1';
+        else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(mail)){
+           return `Please enter the email address in the format aware@example.com!!`;
         }
-        return tmp;
+        else{
+            return '';
+        }
     }
 export function validPass(pass){
-    let tmp='';
     if(!(/[0-9]?[@$#%^&*`>{}\[\]]/g).test(pass)){
-        tmp = 'case1';
+        return `Please enter the email address in the format aware@example.com!!`;
     }
-    return tmp;
+    return '';
 }
 export function validPhone(phone){}
 export function validUsername(username){}

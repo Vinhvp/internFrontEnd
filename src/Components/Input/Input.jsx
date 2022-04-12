@@ -3,57 +3,34 @@ import * as styled from "./Input.styled";
 import {useState} from 'react'
 import * as valid from './validInput';
 
+
 const Input = (props) => {
     const [value, setValue] = useState('');
-    const [errString, setErrString] = useState('');
-    const [color,setColor] = useState('none');
+    const [errorMessage, setErrorMessage] = useState('');
+    
+    
     //function get value from input
     const handleGetValue = (e) => {
-        setValue(()=>{
-            return e.target.value;
-        })
-        pushErr()
+        let errorM = pushErr(e.target.value)
+        setValue(e.target.value);
+        setErrorMessage(errorM);
+        props.setError(Boolean(errorM));
     }
     //function check error
-    const pushErr=()=>{
-        if(props.label == 'EMAIL'){
-            let tmp = valid.validateEmail(value);
-            if(tmp=='case1'){
-                setErrString(()=>{
-                    return `Please enter the email address in the format aware@example.com!!`;
-                })
-                setColor(()=>{
-                    return `1px solid var(--strawberry)`;
-                })
-            }
-            else{
-                setErrString(()=>'')
-            }
+    const pushErr=(inputValue)=>{
+        if(props.label === 'EMAIL'){
+            return valid.validateEmail(inputValue);
         }
-        if(props.label == 'PASSWORD'){
-            let tmp = valid.validPass(value);
-            
-            if(tmp == 'case1'){
-                setErrString(()=>{
-                    return `Passwords must contain at least two of the following: numbers, and symbols.`;
-                })
-                setColor(()=>{
-                    return `1px solid var(--strawberry)`;
-                })
-            }
-            else{
-                setErrString(()=>{
-                    return ``;
-                })
-            }
+        if(props.label === 'PASSWORD'){
+            return valid.validPass(inputValue);
         }
     }
     return (  
         
         <styled.InputContainer mb={props.mb} mt={props.mt}>
             <label htmlFor={props.label}>{props.label}</label>
-            <styled.Input onKeyUp={handleGetValue} type={props.type} name={props.name} placeholder={props.placeholder} color={color}/>
-            <p>{errString}</p>
+            <styled.Input error={Boolean(errorMessage)} onChange={handleGetValue} type={props.type} name={props.name} placeholder={props.placeholder}/>
+            <p>{errorMessage}</p>
         </styled.InputContainer>
         
     );

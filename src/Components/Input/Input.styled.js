@@ -4,7 +4,7 @@ export const Input = styled.input`
     padding: 0 8px;
     width: 395px;
     height: 46px;
-    border: ${(props)=> props.color};
+    border: ${(props)=> props.error ? '1px solid var(--strawberry)': 'none'};
     background-color: var(--white-two);  
 `
 
