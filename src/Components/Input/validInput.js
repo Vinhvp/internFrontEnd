@@ -12,7 +12,13 @@ export function validateEmail(mail)
     }
 export function validPass(pass){
     if(!(/[0-9]?[@$#%^&*`>{}\[\]]/g).test(pass)){
-        return `Please enter the email address in the format aware@example.com!!`;
+        return `Please enter password include at least speacial symbols!!`;
+    }
+    return '';
+}
+export function validName(name){
+    if(name.length <= 2){
+        return `Please enter the valid name!!`;
     }
     return '';
 }

@@ -1,18 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as styled from './Register.styled';
 import Input from '../Input/Input';
 import Link from '../Link/Link';
 import ButtonHome from '../ButtonHome/ButtonHome';
-const Register = () => {
+const Register = (props) => {
+    const [error,setError] = useState({
+        NAME: true,
+        EMAIL: true,
+        PASSWORD: true
+    });
     return ( 
         <>
             <styled.RegisterCard>
                 <h1 style={{marginTop: "47px"}}>Register</h1>
                 <styled.Container>
                     <form>
-                        <Input label="NAME" name="name" placeholder="Enter your name..." mb="24px"></Input>
-                        <Input type='email' label="EMAIL" name="password" placeholder="aware@example.com" mb="24px"></Input>
-                        <Input type="password" label="PASSWORD" name="password" placeholder="Enter your password..." mb="26px"></Input>
+                        <Input setError={setError} label="NAME" name="name" placeholder="Enter your name..." mb="24px"></Input>
+                        <Input setError={setError} type='email' label="EMAIL" name="password" placeholder="aware@example.com" mb="24px"></Input>
+                        <Input setError={setError} type="password" label="PASSWORD" name="password" placeholder="Enter your password..." mb="26px"></Input>
                         <styled.Text>
                         
                             <p style={{display: "block"}}>By creating an account you agree to the</p>
@@ -20,7 +25,7 @@ const Register = () => {
 
 
                         </styled.Text>
-                        <ButtonHome bgcolor="var( --pumpkin-orange)" name="Register" color='var(--white-two)' mt='51px' mb='70px'></ButtonHome>
+                        <ButtonHome error={error} name="Register" color='var(--white-two)' mt='51px' mb='70px'></ButtonHome>
                     </form>
                     <div style={{textAlign: 'center'}}>
                         <p style={{display:"inline-block"}}>Do you have an account?</p>

@@ -11,10 +11,16 @@ const Input = (props) => {
     
     //function get value from input
     const handleGetValue = (e) => {
+        
         let errorM = pushErr(e.target.value)
         setValue(e.target.value);
         setErrorMessage(errorM);
-        props.setError(Boolean(errorM));
+        props.setError(prevState => {
+            return {
+                ...prevState,
+                [props.label]: Boolean(errorM)
+            }
+        });
     }
     //function check error
     const pushErr=(inputValue)=>{
@@ -23,6 +29,9 @@ const Input = (props) => {
         }
         if(props.label === 'PASSWORD'){
             return valid.validPass(inputValue);
+        }
+        if(props.label ==='NAME'){
+            return valid.validName(inputValue);
         }
     }
     return (  

@@ -6,7 +6,10 @@ import ButtonHome from './../ButtonHome/ButtonHome';
 
 
 const Login = (props) =>{
-    const [error,setError] = useState(true);
+    const [error,setError] = useState({
+        EMAIL: true,
+        PASSWORD: true, 
+    });
     
         return (
             <styled.LoginCard>
