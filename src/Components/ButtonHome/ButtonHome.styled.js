@@ -11,12 +11,12 @@ export const Button = styled.button`
     font-style: normal;
     line-height: 1.57;
     letter-spacing: normal;
-    color: ${props => props.color};
+    color: ${props => props.error ? "var(--greyish-brown)" : "var(--white-two)"};
     text-align: center;
     border: 0; 
     width: 395px;
     height: 49px;
     box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-    background-color: ${props =>props.bgcolor};
+    background-color: ${props => props.error ? "var(--white-four)" : "var(--pale-orange)"};
     cursor: pointer;
 `

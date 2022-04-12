@@ -9,12 +9,12 @@ import ForgotPass from '../../Components/Forgot/ForgotPass';
 const Home = () => {
     return (  
         <>
-            {/* <Header></Header>
+            <Header></Header>
             <Content></Content>
-            <Footer></Footer> */}
+            <Footer></Footer>
             {/* <Login></Login>  */}
             {/* <Register></Register>  */}
-            <ForgotPass></ForgotPass>
+            {/* <ForgotPass></ForgotPass> */}
         </>
     );
 }

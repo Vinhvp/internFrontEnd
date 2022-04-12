@@ -1,12 +1,38 @@
 import React from 'react';
 import * as styled from "./Input.styled";
+import {useState} from 'react'
+import * as valid from './validInput';
+
+
 const Input = (props) => {
+    const [value, setValue] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     
+    
+    //function get value from input
+    const handleGetValue = (e) => {
+        let errorM = pushErr(e.target.value)
+        setValue(e.target.value);
+        setErrorMessage(errorM);
+        props.setError(Boolean(errorM));
+    }
+    //function check error
+    const pushErr=(inputValue)=>{
+        if(props.label === 'EMAIL'){
+            return valid.validateEmail(inputValue);
+        }
+        if(props.label === 'PASSWORD'){
+            return valid.validPass(inputValue);
+        }
+    }
     return (  
+        
         <styled.InputContainer mb={props.mb} mt={props.mt}>
             <label htmlFor={props.label}>{props.label}</label>
-            <styled.InputT type={props.type} name={props.name} placeholder={props.placeholder}/>
+            <styled.Input error={Boolean(errorMessage)} onChange={handleGetValue} type={props.type} name={props.name} placeholder={props.placeholder}/>
+            <p>{errorMessage}</p>
         </styled.InputContainer>
+        
     );
 }
 

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const LoginCard = styled.div
-`  
+`   
+    z-index: 99;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -24,8 +25,6 @@ export const LoginCard = styled.div
 
 `
 
-export const Email = styled.div``
-export const Password = styled.div``
 export const Checkbox = styled.div`
     display: flex;
     justify-content: space-between;
@@ -44,6 +43,18 @@ export const Checkbox = styled.div`
 export const Container = styled.div`
     width: 395px;
     margin: 0 auto;
+    section{
+        p{
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.57;
+            letter-spacing: normal;
+            color: var(--greyish-brown);
+        }
+    }
 `
 
 export const Button = styled.button`
