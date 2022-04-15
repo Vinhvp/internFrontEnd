@@ -3,11 +3,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import List from '../ListPopper/List';
 import * as Styled from "./Header.styled";
 import Modal from '@mui/material/Modal';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
-
+import { Routes, Route, Link } from "react-router-dom";
 const Header = () => {
     const [openLogin, setOpenLogin] = React.useState(false);
     const handleOpenLogin = () => setOpenLogin(true);
@@ -22,7 +23,7 @@ const Header = () => {
                         <Styled.Input placeholder='Search' className=''/>
                         <SearchIcon />
                     </Styled.SearchBox>
-                    <Styled.Logo src="https://cdn.zeplin.io/5b6909753dbbb6686782615a/assets/CF9525DD-66CA-4FAB-91EB-E2478E84A39E.svg"/>       
+                    <Link to='/'><Styled.Logo src="https://cdn.zeplin.io/5b6909753dbbb6686782615a/assets/CF9525DD-66CA-4FAB-91EB-E2478E84A39E.svg"/></Link>      
                     <Styled.Login>
                         <div style={{cursor:'pointer'}} onClick={handleOpenRegister}>Register</div>
                     <Modal 
@@ -51,22 +52,23 @@ const Header = () => {
                     </Styled.Login>
     
                 </Styled.HeaderNav>
-                <Styled.Navbar>
+                {/* Thanh NAV dropdown với List component */}
+                <Styled.Navbar> 
                         <Styled.NavbarItem>
                             <Styled.NavbarItemDiv>Men</Styled.NavbarItemDiv>
-                            <ArrowDropDownIcon style={{cursor:'pointer'}}/>
+                            <List/>
                         </Styled.NavbarItem>
                         <Styled.NavbarItem>
                             <Styled.NavbarItemDiv>Ladies</Styled.NavbarItemDiv>
-                            <ArrowDropDownIcon style={{cursor:'pointer'}}/>
+                            <List/>
                         </Styled.NavbarItem>
                         <Styled.NavbarItem>
                             <Styled.NavbarItemDiv >Girls</Styled.NavbarItemDiv>
-                            <ArrowDropDownIcon style={{cursor:'pointer'}}/>
+                            <List/>
                         </Styled.NavbarItem>
                         <Styled.NavbarItem>
                             <Styled.NavbarItemDiv >Boys</Styled.NavbarItemDiv>
-                            <ArrowDropDownIcon style={{cursor:'pointer'}}/>
+                            <List/>
                         </Styled.NavbarItem>
                 </Styled.Navbar>
             </div>

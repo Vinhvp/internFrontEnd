@@ -64,6 +64,7 @@ export const Navbar = styled.div`
 `
 export const NavbarItem = styled.div`
     display: flex;
+    align-items: center;
     margin-left: 3px;
 `
 export const NavbarItemDiv = styled.div`

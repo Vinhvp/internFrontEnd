@@ -2,7 +2,7 @@ import React from 'react';
 import {HomeContainer,Banner,BannerChild1,BannerChild2,BannerChild3,
     BannerChild4,Button,TitleBanner,
     TitleBannerChild, Overlay} from "./Content.styled";
-const Content = () => {
+const HomeContent = () => {
     return (
        <>
         <HomeContainer>
@@ -36,4 +36,4 @@ const Content = () => {
     );
 }
 
-export default Content;
+export default HomeContent;
