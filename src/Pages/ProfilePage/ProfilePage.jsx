@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import * as styled from './ProfilePage.styled';
 import Header from '../../Components/Header/Header';
-import ProfileEditor from '../../Components/Profile/Profile';
+import Profile from '../../Components/Profile/Profile';
+
 const ProfilePage = () => {
     const [toggleActive, setToggleActive] = useState(true);
     const handleToggle = () =>{
@@ -13,7 +14,7 @@ const ProfilePage = () => {
         <>
             
             <Header></Header>
-            <styled.Profile>
+            <styled.ProfilePage>
                 <div className="Profile_Setting">
                     <h2>My Account</h2>
                     <styled.active  onClick={handleToggle} color = {toggleActive} >
@@ -25,8 +26,8 @@ const ProfilePage = () => {
                     </styled.dactive>
 
                 </div>
-                <ProfileEditor></ProfileEditor>
-            </styled.Profile>  
+                <Profile></Profile>
+            </styled.ProfilePage>  
         </>
      );
 }

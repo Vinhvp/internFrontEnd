@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { width } from '@mui/system';
-export const Profile = styled.div`
+export const ProfilePage = styled.div`
     width: 678px;
     height: 267px;
     display: flex;

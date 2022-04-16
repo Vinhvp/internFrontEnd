@@ -36,7 +36,7 @@ const Input = (props) => {
     }
     return (  
         
-        <styled.InputContainer mb={props.mb} mt={props.mt}>
+        <styled.InputContainer mb={props.mb} mt={props.mt} >
             <label htmlFor={props.label}>{props.label}</label>
             <styled.Input error={Boolean(errorMessage)} onChange={handleGetValue} type={props.type} name={props.name} placeholder={props.placeholder}/>
             <p>{errorMessage}</p>
