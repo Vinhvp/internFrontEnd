@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import * as styled from './ProductDetail.styled';
 import CircleIcon from '@mui/icons-material/Circle';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -7,8 +7,9 @@ import Button from '../Button/Button';
 import Comment from '../Comment/Comment';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-
-import {data} from './dataRecommend';
+import {useParams} from 'react-router-dom';
+import {data} from '../ProductBranch/data';
+import {tool} from '../../App';
 const recommendData = data.map((e)=>{
     return(
         <styled.RecommendItem>
@@ -18,36 +19,72 @@ const recommendData = data.map((e)=>{
     )
 })
 
-const ProductDetails = () => {
+const ProductDetails = (props) => {
+    const setDataCard = useContext(tool);
+    const [size, setSize] = useState('S');
+    
+    let { id } = useParams();
+    let detailProduct = data.filter((data) => data['id'] == id);
+    const getProduct = () =>{
+        
+        setDataCard.dataCart(prevState => {
+
+            return [...prevState, 
+                { "img": `${detailProduct[0].img}`,
+                "title": `${detailProduct[0].title}`,
+                "id": `${detailProduct[0].id}`,
+                "price": `${detailProduct[0].price}`,
+                "quantity": `${quantity}`,
+                "size": `${size}`
+                }
+            ]
+
+        }
+
+            
+        )
+
+    }
+    
+    const [quantity, setQuantity] = useState(1);
+    const getSize =(e)=>{
+        setSize(e.target.value);
+    }
+   
+
+    const incrementClick = () => {
+        setQuantity(quantity+1);
+    }
+    const decrementClick = () => {
+        if(!(quantity <= 1)){
+            setQuantity(quantity-1);
+        }
+    }
     return ( 
         <>
             <styled.ProductDetails>
-                <p>Ladies/Dresses/Collete Stretch Linen Minidress</p>
+                <p>Ladies/Shirts</p>
                 <styled.Detail>
                     <styled.Detail1>
                         <div>
-                            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="" />
+                            <img src={detailProduct[0].img} alt="" />
                         </div>
                         <div>
-                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="" />
-
+                        <img src={detailProduct[0].img} alt="" />
                         </div>
                         <div>
-                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="" />
-
+                        <img src={detailProduct[0].img} alt="" />
                         </div>
                         <div>
-                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="" />
-
+                        <img src={detailProduct[0].img} alt="" />
                         </div>
                     </styled.Detail1>
                     <styled.Detail2>
-                        <img src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'>
-
-                        </img>
+                        <img src={detailProduct[0].img} alt="" />
+                       
                         <div>
-                            <h1>Collete Stretch Linen Minidress</h1>
-                            <span>$69.00</span>
+                            <h1>{detailProduct[0].title}</h1>
+                            <span>$ {detailProduct[0].price}.00</span>
                             <div style={{marginBottom:'0'}}>
                                 <StarIcon style={{width: '16px', height: '15px' , fill:'yellow'}}/>
                                 <StarIcon style={{width: '16px', height: '15px', fill:'yellow'}}/>
@@ -59,13 +96,13 @@ const ProductDetails = () => {
                             <div  style={{marginTop:'9px'}}>
                                 <b>Size</b>
                                 <div>
-                                    <styled.Size bgcolor='var(--pale-orange)' color='var(--white)'>
+                                    <styled.Size value='S'  bgcolor='var(--pale-orange)' color='var(--white)'>
                                     S
                                     </styled.Size>
-                                    <styled.Size bgcolor='var(--white-two)' color='var(--dark-grey)'>
+                                    <styled.Size value='M' onClick={getSize} bgcolor='var(--white-two)' color='var(--dark-grey)'>
                                     M
                                     </styled.Size >
-                                    <styled.Size bgcolor='var(--white-four)' color='var(--greyish-brown)'>
+                                    <styled.Size value='L' onClick={getSize} bgcolor='var(--white-four)' color='var(--greyish-brown)'>
                                     L
                                     </styled.Size >
                                 </div>
@@ -107,13 +144,13 @@ const ProductDetails = () => {
                             <div style={{display: 'flex', justifyContent:'flex-start', alignItems:'center', marginBottom:'40px'}}>
                                 <b>Quantity</b>
                                 <styled.Quantity>
-                                    <button>-</button>
-                                    <h5>1</h5>
-                                    <button>+</button>
+                                    <button onClick={decrementClick}>-</button>
+                                    <h5>{quantity}</h5>
+                                    <button onClick={incrementClick}>+</button>
                                 </styled.Quantity>
                             </div>
                             <div style={{marginBottom:'26px'}}>
-                                <Button name='Add to cart' w='429px' h='50px' bgcolor='#5f6dff' color='var(--white)'>
+                                <Button onClick={getProduct} name='Add to cart' w='429px' h='50px' bgcolor='#5f6dff' color='var(--white)' >
 
                                 </Button>
                             </div>

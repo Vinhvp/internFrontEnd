@@ -19,6 +19,7 @@ export const ProductDetails = styled.div`
         text-align: center;
         color: var(--dark-grey);
     }
+    
 `
 export const Detail = styled.div`
     display: flex;
@@ -195,10 +196,13 @@ export const Quantity = styled.button`
     button{
         outline: 0;
         border: none;
-        cursor: pointer;
         font-size: 23px;
         color: var(--dark-grey);
         font-weight: normal;
+    }
+    button:hover{
+        cursor: pointer;
+        opacity: 0.5;
     }
     h5{
         width: 9px;

@@ -63,10 +63,22 @@ export const Navbar = styled.div`
     transform: translateX(-30px);
 `
 export const NavbarItem = styled.div`
+    .linkName{
+        text-decoration: none;
+        
+    }
     display: flex;
     align-items: center;
     margin-left: 3px;
 `
 export const NavbarItemDiv = styled.div`
-    
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    color: var(--dark-grey);
+    text-decoration: none;
 `

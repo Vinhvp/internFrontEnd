@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 
-export const Card = styled.div`
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    width:  202px;
-    height: 345px;
-    align-items: flex-start;
-    overflow: hidden;
+export const Card = styled.span`
+    text-decoration: none;
+    margin-left: 20px;
+    width: 190px;
     img{
         height: 252px;
         padding: 0;
@@ -27,8 +23,7 @@ export const Card = styled.div`
         letter-spacing: normal;
         text-align: left;
         color: var(--dark-grey);
-        margin: 10px 0 10px 0;
-        transform: translateX(-10px);
+        margin: 5px 0 5px 0;
     }
     div{
         width: 44px;
@@ -41,10 +36,7 @@ export const Card = styled.div`
         line-height: 1.83;
         letter-spacing: normal;
         color: var(--greyish);
-        transform: translateX(-80px);
+        transform: translateX(-10px);
     }
-    a{
-        text-decoration: none;
-        color: var(--dark-grey);
-    }
+    
 `

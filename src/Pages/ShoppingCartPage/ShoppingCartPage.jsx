@@ -2,12 +2,16 @@ import React from 'react';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import ShoppingCart from '../../Components/ShoppingCart/ShoppingCart';
-const ShoppingCartPage = () => {
+import { useEffect } from 'react';
+import { useContext } from 'react';
+
+const ShoppingCartPage = (props) => {
+    
     return ( 
         <>
-            <Header></Header>
-            <ShoppingCart></ShoppingCart>
-            <Footer></Footer>
+            
+            <ShoppingCart ></ShoppingCart>
+         
         </>
      );
 }

@@ -16,7 +16,7 @@ const Register = (props) => {
                 <styled.Container>
                     <form>
                         <Input setError={setError} label="NAME" name="name" placeholder="Enter your name..." mb="24px"></Input>
-                        <Input setError={setError} type='email' label="EMAIL" name="password" placeholder="aware@example.com" mb="24px"></Input>
+                        <Input setError={setError} type='email' label="EMAIL" name="email" placeholder="aware@example.com" mb="24px"></Input>
                         <Input setError={setError} type="password" label="PASSWORD" name="password" placeholder="Enter your password..." mb="26px"></Input>
                         <styled.Text>
                         

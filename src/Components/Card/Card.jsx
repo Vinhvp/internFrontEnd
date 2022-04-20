@@ -4,10 +4,10 @@ import * as styled from './Card.styled';
 const Card = (props) => {
     return ( 
         <>
-        <styled.Card>
+        <styled.Card href={props.href}>
             
             <img src={props.img} alt="" />
-            <h6><a href='#'>{props.title}</a></h6>
+            <h6>{props.title}</h6>
             <div>{props.price}</div>
 
         </styled.Card>

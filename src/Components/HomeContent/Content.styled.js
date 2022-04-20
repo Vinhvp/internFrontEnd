@@ -11,6 +11,9 @@ export const HomeContainer = styled.div`
     grid-template-areas: 
     "h1 h1 h1 h1"
     "h2 h3 h4 h5";
+    button:hover{
+        opacity: 0.8;
+    }
 `
 export const Banner = styled.div`
     position: relative;
@@ -26,6 +29,10 @@ export const Banner = styled.div`
 `
 
 export const BannerChild1 = styled.div`
+    .linkShop{
+        text-decoration: none;
+        color: var(--white);
+    }
     position: relative;
     background-image: url("https://images.unsplash.com/photo-1507114845806-0347f6150324?ixlib=
     rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=
@@ -38,6 +45,10 @@ export const BannerChild1 = styled.div`
     grid-area: h2;
 `
 export const BannerChild2 = styled.div`
+    .linkShop{
+        text-decoration: none;
+        color: var(--white);
+    }
     position: relative;
     grid-area: h3;
     background-image: url("https://images.unsplash.com/photo-1564485377539-4af72d1f6a2f?ixlib=rb-1.2.1&ixid=
@@ -50,6 +61,10 @@ export const BannerChild2 = styled.div`
     height: 405px;
 `
 export const BannerChild3 = styled.div`
+    .linkShop{
+        text-decoration: none;
+        color: var(--white);
+    }
     position: relative;
     grid-area: h4;
     background-image: url("https://images.unsplash.com/photo-1503342394128-c104d54dba01?ixlib=
@@ -61,6 +76,10 @@ export const BannerChild3 = styled.div`
     height: 405px;
 `
 export const BannerChild4 = styled.div`
+    .linkShop{
+        text-decoration: none;
+        color: var(--white);
+    }
     position: relative;
     grid-area: h5;
     background-image: url("https://images.unsplash.com/photo-1599834562135-b6fc90e642ca?ixlib=rb-1.2.1&ixid=
@@ -73,6 +92,7 @@ export const BannerChild4 = styled.div`
     height: 405px;
 `
 export const Button = styled.button`
+
     position: absolute;
     outline: 0;
     border: 0;
@@ -85,6 +105,7 @@ export const Button = styled.button`
     box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
     background-color: var(--pale-orange);
     cursor: pointer;
+    
 `
 export const TitleBanner = styled.h1`
     margin-right: 83px;
@@ -115,6 +136,7 @@ export const TitleBannerChild = styled.h2`
     letter-spacing: normal;
     text-align: center;
     color: white;
+    cursor: pointer;
 `
 export const Overlay = styled.div`
     position: absolute;

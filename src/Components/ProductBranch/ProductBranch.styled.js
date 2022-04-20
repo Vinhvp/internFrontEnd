@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Popper } from '@mui/material/Popper';
+import { width } from '@mui/system';
 
 export const ProductBranch = styled.div`
     display: block;
@@ -7,6 +8,7 @@ export const ProductBranch = styled.div`
     height: 1685px;
     text-align: center;
     margin: 0 auto;
+    
     p{
         margin: 54px 78px 45px 0;
         font-family: Montserrat;
@@ -77,9 +79,15 @@ export const ProductLeftBar = styled.div`
 `
 export const ProductList = styled.div`
     width: 1077px;
-   div{
+    
+    .selectLabel{
         display: flex;
         justify-content: space-between;
+        align-items: center;
+    }
+   div{
+        display: flex;
+        justify-content: flex-start;
         align-items: center;
    }
 `
@@ -108,14 +116,30 @@ export const ProductItem = styled.div`
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    flex: 1 1 180px;
-    align-items: space-between;
+    align-items: flex-start;
     justify-content: flex-start;
     flex-direction: row;
     div{
         width: 180px;
         height: 345px;
-        margin: 0 0 15px 0;
+        margin: 0px 0 15px 10px;
         flex-basis: 202px; 
+    }
+    a{
+        text-decoration: none;
+        color: var(--dark-grey);
+        width:  202px;
+        height: 345px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .linkProducts{
+        display: flex;
+        flex-direction: column;
+        width:  202px;
+        height: 345px;
+        overflow: hidden;
     }
 `

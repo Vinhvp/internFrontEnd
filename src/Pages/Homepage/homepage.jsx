@@ -6,7 +6,10 @@ import Login from '../../Components/Login/Login';
 import Register from '../../Components/Register/Register';
 import ForgotPass from '../../Components/Forgot/ForgotPass';
 
+
+
 const Home = () => {
+
     return (  
         <>
             
