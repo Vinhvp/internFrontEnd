@@ -12,8 +12,8 @@ export const InputContainer = styled.div`
     p{  
         position: absolute;
         margin: 0;
-        left: 7px;
-        bottom: -10px;
+        left: 0px;
+        bottom: -16px;
         font-size: 10px;    
         font-weight: 500;
         color: var(--strawberry);

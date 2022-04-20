@@ -11,10 +11,16 @@ const Input = (props) => {
     
     //function get value from input
     const handleGetValue = (e) => {
+        
         let errorM = pushErr(e.target.value)
         setValue(e.target.value);
         setErrorMessage(errorM);
-        props.setError(Boolean(errorM));
+        props.setError(prevState => {
+            return {
+                ...prevState,
+                [props.label]: Boolean(errorM)
+            }
+        });
     }
     //function check error
     const pushErr=(inputValue)=>{
@@ -24,10 +30,13 @@ const Input = (props) => {
         if(props.label === 'PASSWORD'){
             return valid.validPass(inputValue);
         }
+        if(props.label ==='NAME'){
+            return valid.validName(inputValue);
+        }
     }
     return (  
         
-        <styled.InputContainer mb={props.mb} mt={props.mt}>
+        <styled.InputContainer mb={props.mb} mt={props.mt} >
             <label htmlFor={props.label}>{props.label}</label>
             <styled.Input error={Boolean(errorMessage)} onChange={handleGetValue} type={props.type} name={props.name} placeholder={props.placeholder}/>
             <p>{errorMessage}</p>

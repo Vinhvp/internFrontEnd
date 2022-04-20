@@ -3,31 +3,32 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import * as styled from './Footer.styled'
+import { Routes, Route, Link } from "react-router-dom";
 const Footer = () => {
     return (
        <>
         <styled.FooterContainer>
                 <styled.FooterContact>
-                    <styled.FooterLogo src="https://cdn.zeplin.io/5b6909753dbbb6686782615a/assets/CF9525DD-66CA-4FAB-91EB-E2478E84A39E.svg"/>
+                <Link to='/'><styled.FooterLogo src="https://cdn.zeplin.io/5b6909753dbbb6686782615a/assets/CF9525DD-66CA-4FAB-91EB-E2478E84A39E.svg"/></Link>      
     
                     <styled.FooterList>
                         <styled.FooterLi>
-                            <styled.FooterItem>Home</styled.FooterItem>
+                            <Link style={{ textDecoration: 'none' }} to ='/'><styled.FooterItem>Home</styled.FooterItem></Link>
                         </styled.FooterLi>
                         <styled.FooterLi>
-                            <styled.FooterItem>Products</styled.FooterItem>
+                            <Link style={{ textDecoration: 'none' }} to ='/product'><styled.FooterItem>Product</styled.FooterItem></Link>
                         </styled.FooterLi>
                         <styled.FooterLi>
-                            <styled.FooterItem>Services</styled.FooterItem>
+                            <Link style={{ textDecoration: 'none' }} to ='/product'><styled.FooterItem>Services</styled.FooterItem></Link>
                         </styled.FooterLi>
                         <styled.FooterLi>
-                            <styled.FooterItem>About us</styled.FooterItem>
+                            <Link style={{ textDecoration: 'none' }} to ='/product'><styled.FooterItem>About us</styled.FooterItem></Link>
                         </styled.FooterLi>
                         <styled.FooterLi>
-                            <styled.FooterItem>Help</styled.FooterItem>
+                            <Link style={{ textDecoration: 'none' }} to ='/help'><styled.FooterItem>Help</styled.FooterItem></Link>
                         </styled.FooterLi>
                         <styled.FooterLi>
-                            <styled.FooterItem>Contacts</styled.FooterItem>
+                        <Link style={{ textDecoration: 'none' }} to ='/contacts'><styled.FooterItem>Contacts</styled.FooterItem></Link>
                         </styled.FooterLi>
                     </styled.FooterList>
                     <styled.FooterSocial>

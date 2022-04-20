@@ -1,17 +1,16 @@
 import React from 'react';
 import * as styled from './ButtonHome.styled'
 const ButtonHome = (props) => {
+    
     return ( 
         <>
-            <styled.Button error= {props.error} mt={props.mt} mb={props.mb} bgcolor={props.bgcolor} color={props.color}>
+            <styled.Button error= {props.error} mt={props.mt} mb={props.mb}>
                 {props.name}
             </styled.Button>
         </>
     );
 }
 ButtonHome.defaultProps ={
-    bgcolor: "var(--white-two)",
-    color: "var(--dark-grey)",
     type: "submit"
 
 }
