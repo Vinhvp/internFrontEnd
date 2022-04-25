@@ -5,7 +5,18 @@ export const Input = styled.input`
     width: 395px;
     height: 46px;
     border: ${(props)=> props.error ? '1px solid var(--strawberry)': 'none'};
-    background-color: var(--white-two);  
+    background-color: var(--white-four);
+    &::placeholder{
+        opacity: 0.3;
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.57;
+        letter-spacing: normal;
+        color: var(--greyish-brown);
+    }  
 `
 
 export const InputContainer = styled.div`

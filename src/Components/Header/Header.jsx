@@ -21,14 +21,21 @@ const Header = (props) => {
     const handleOpenRegister = () => setOpenRegister(true);
     const handleCloseRegister = () => setOpenRegister(false);
     const setValue = useContext(tool)
-    
+    const userToken = Boolean(localStorage.getItem('token'));
+    const signOut = () =>{
+        localStorage.removeItem('user'); 
+        localStorage.removeItem('token');
+        localStorage.removeItem('productLength');
+        alert('Sign out successful!!');
+        window.location.replace("http://localhost:3000");
+    }
     const getValue = (e) => {
        setValue.search((e.target.value));
     }   
         
         return (
             <div>
-                
+                          
                 
                     <Styled.HeaderNav>
                         <Styled.SearchBox>
@@ -37,7 +44,7 @@ const Header = (props) => {
                         </Styled.SearchBox>
                         <Link to='/'><Styled.Logo src="https://cdn.zeplin.io/5b6909753dbbb6686782615a/assets/CF9525DD-66CA-4FAB-91EB-E2478E84A39E.svg"/></Link>      
                         <Styled.Login>
-                            <div style={{cursor:'pointer'}} onClick={handleOpenRegister}>Register</div>
+                        {userToken ? <div className='profileImg'><img style={{objectFit:'cover', width:"100%", height:"50px"}} src="https://t.vietgiaitri.com/2020/3/8/tai-sao-qua-khu-bi-tham-cua-gia-dinh-doctor-strange-bi-cat-khoi-bo-phim-chinh-thuc-786-4781355.jpg"></img></div> : <div style={{cursor:'pointer'}} onClick={handleOpenRegister}>Register</div>}
                         <Modal 
                             open={openRegister}
                             onClose={handleCloseRegister}
@@ -47,7 +54,7 @@ const Header = (props) => {
                           <div><Register/></div> 
                         </Modal>
                         <Styled.Loginbutton>
-                            <div onClick={handleOpenLogin}>Login</div>
+                            {userToken ? <div onClick={signOut}>Sign Out</div> : <div onClick={handleOpenLogin}>Login</div>}
                         </Styled.Loginbutton> 
                         <Modal 
                             open={openLogin}
@@ -57,7 +64,7 @@ const Header = (props) => {
                         >
                           <div><Login/></div> 
                         </Modal>
-    
+                            
                             <Badge badgeContent={props.badge} color="primary">
                                 <Link to='/cart'><ShoppingCartIcon style={{color: 'black'}}/></Link>
                             </Badge>

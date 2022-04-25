@@ -8,27 +8,54 @@ import Comment from '../Comment/Comment';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import {useParams} from 'react-router-dom';
-import {data} from '../ProductBranch/data';
-import {tool} from '../../App';
-const recommendData = data.map((e)=>{
-    return(
-        <styled.RecommendItem>
-            <img src={e.img}></img>
-            <div>{e.title}</div>
-        </styled.RecommendItem>
-    )
-})
 
+import {tool} from '../../App';
+//get API
+var dataDetails = [];
+let dataApi = 'http://localhost:7000/productDetails/get';
+async function fetchAPI(){
+    const res = await fetch(dataApi);
+    return await res.json();
+}
+fetchAPI().then(data => {dataDetails = data.map(e => e)})
 const ProductDetails = (props) => {
-    const setDataCard = useContext(tool);
+    const setData = useContext(tool);
     const [size, setSize] = useState('S');
     
     let { id } = useParams();
-    let detailProduct = data.filter((data) => data['id'] == id);
+    const dataRecomends = props.dataRecommend.filter((data)=> data['id'] != id);
+  
+    const recommendData = dataRecomends.map((e,i)=>{
+        return ( (i<8) &&
+        (<styled.RecommendItem>
+            <img src={e.img}></img>
+            <div>{e.title}</div>
+        </styled.RecommendItem>))
+    })
+    const moreFrom = dataRecomends.map((e,i)=>{
+        return (
+            (i < 4) && (
+                <div>
+                    <img src={e.img}></img>
+                </div>
+        )
+    )})
+    let detailProduct = dataDetails.filter((data) => data['id'] == id);
+    let a = [];  
     const getProduct = () =>{
+        {Boolean(localStorage.getItem('token')) && localStorage.setItem("productLength", parseInt(localStorage.getItem("productLength"))+1);}
         
-        setDataCard.dataCart(prevState => {
-
+        
+        setData.dataCart(prevState => {
+            a.push( 
+                { "img": `${detailProduct[0].img}`,
+                "title": `${detailProduct[0].title}`,
+                "id": `${detailProduct[0].id}`,
+                "price": `${detailProduct[0].price}`,
+                "quantity": `${quantity}`,
+                "size": `${size}`
+                }
+            );
             return [...prevState, 
                 { "img": `${detailProduct[0].img}`,
                 "title": `${detailProduct[0].title}`,
@@ -40,6 +67,7 @@ const ProductDetails = (props) => {
             ]
 
         }
+        
 
             
         )
@@ -60,6 +88,7 @@ const ProductDetails = (props) => {
             setQuantity(quantity-1);
         }
     }
+    console.log(a);
     return ( 
         <>
             <styled.ProductDetails>
@@ -166,24 +195,7 @@ const ProductDetails = (props) => {
                         <div style={{height: '50px'}}>
                             <span>More from <span style={{color:'var(--greyish-brown)', fontSize:'12px'}}>Zara</span></span>
                         </div>
-                        <div>
-                        <img src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'></img>
-                        </div>
-                        <div>
-                            <img src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'>
-
-                            </img>
-                        </div>
-                        <div>
-                            <img src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'>
-
-                            </img>
-                        </div>
-                        <div>
-                            <img src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'>
-
-                            </img>
-                        </div>
+                        {moreFrom}
                     </styled.Detail3>
                 </styled.Detail>
                 <styled.ReviewTable>

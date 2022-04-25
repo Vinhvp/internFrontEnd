@@ -11,9 +11,14 @@ const Input = (props) => {
     
     //function get value from input
     const handleGetValue = (e) => {
-        
         let errorM = pushErr(e.target.value)
         setValue(e.target.value);
+        props.getValue(prevState =>{
+            return{
+                ...prevState,
+                [props.name]: e.target.value
+            }
+        })
         setErrorMessage(errorM);
         props.setError(prevState => {
             return {

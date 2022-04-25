@@ -37,6 +37,10 @@ export const Login = styled.div`
     justify-content: space-between;
     width: 250px;
     align-items: center;
+    .profileImg{
+        cursor:'pointer'; overflow:hidden;
+         width: 50px; height: 50px; border-radius:50%;
+    }
 `
 export const Loginbutton = styled.button`
     font-weight: bold;

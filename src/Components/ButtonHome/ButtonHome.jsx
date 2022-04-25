@@ -4,7 +4,7 @@ const ButtonHome = (props) => {
     
     return ( 
         <>
-            <styled.Button error= {props.error} mt={props.mt} mb={props.mb}>
+            <styled.Button onClick={props.onClick} type={props.type} error= {props.error} mt={props.mt} mb={props.mb}>
                 {props.name}
             </styled.Button>
         </>
