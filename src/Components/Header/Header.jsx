@@ -24,22 +24,12 @@ const Header = (props) => {
     const setValue = useContext(tool)
     const userToken = Boolean(localStorage.getItem('token'));
     const signOut = () =>{
-        axios({
-            method: 'post',
-            url: 'http://localhost:7000/account/productDetails',
-            data: JSON.stringify(localStorage.getItem('product'))
-        })
-        .then((response)=>{
-            localStorage.removeItem('user'); 
-            localStorage.removeItem('token');
-            if(response.data.status == 'okay'){
-                localStorage.removeItem('product');
-                localStorage.removeItem('productLength');
-                alert('Sign out successful!!');
-                window.location.replace("http://localhost:3000");
-            }
-        })
-        
+        localStorage.removeItem('user'); 
+        localStorage.removeItem('token');
+        localStorage.removeItem('product');
+        localStorage.removeItem('productLength');
+        alert('Sign out successful!!');
+        window.location.replace("http://localhost:3000");
     }
     const getValue = (e) => {
        setValue.search((e.target.value));

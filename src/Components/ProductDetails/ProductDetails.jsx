@@ -8,8 +8,8 @@ import Comment from '../Comment/Comment';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import {useParams} from 'react-router-dom';
-
 import {tool} from '../../App';
+const axios = require('axios');
 //get API
 var dataDetails = [];
 let dataApi = 'http://localhost:7000/productDetails/get';
@@ -45,6 +45,7 @@ const ProductDetails = (props) => {
     const getProduct = () =>{
         {Boolean(localStorage.getItem('token')) && localStorage.setItem("productLength", parseInt(localStorage.getItem("productLength"))+1);}
         
+        
         let item = { "img": `${detailProduct[0].img}`,
         "title": `${detailProduct[0].title}`,
         "id": `${detailProduct[0].id}`,
@@ -52,10 +53,19 @@ const ProductDetails = (props) => {
         "quantity": `${quantity}`,
         "size": `${size}`
         }
+        axios({
+            method: 'post',
+            url: 'http://localhost:7000/account/productDetails',
+            data: {
+            "user": localStorage.getItem('user'),
+            "id": `${detailProduct[0].id}`,
+            "quantity": `${quantity}`,
+            "size": `${size}`
+            }
+        })
+        
         setData.dataCart(prevState => {
-            {Boolean(localStorage.getItem('token')) && localStorage.setItem('product',JSON.stringify([...prevState, item]))}
             return [...prevState, item];
-
         }
         
 

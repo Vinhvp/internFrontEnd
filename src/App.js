@@ -12,14 +12,29 @@ import ShoppingCartPage from './Pages/ShoppingCartPage/ShoppingCartPage';
 import ProfilePage from './Pages/ProfilePage/ProfilePage';
 import ProductDetails from './Components/ProductDetails/ProductDetails';
 import Verify from './Pages/Verifypage/verify';
+const axios = require('axios');
 export const tool = createContext();
+
 function App() {
   const [value, setValue] = useState('');
   const [dataCart, setdataCart] = useState([]);
   const [dataRecommend,setDataRecommend] = useState([]);
   const [email, setEmail] = useState('');
-  
-  let productLength = localStorage.getItem('productLength');
+  const [productLength, setProductLength] = useState(dataCart.length);
+  const [productCart, setProductCart] = useState([]);
+  useEffect(()=>{
+    if(Boolean(localStorage.getItem('user'))){
+      axios.get('http://localhost:7000/account/productDetails/get',{
+        params: {
+          user: localStorage.getItem('user')
+        }
+      }).then((res)=>{
+        let product = res.data.products;
+        setProductLength(product.length);
+        setProductCart(product);
+      })
+    }
+  },[])
   
   return (
     
@@ -36,7 +51,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/category" element={<Product searchValue={value}/>} />
           <Route path="/product/:id" element={<ProductDetails dataRecommend={dataRecommend} />} />
-          <Route path="/cart" element={<ShoppingCartPage />} />
+          <Route path="/cart" element={<ShoppingCartPage productCarts={productCart}/>} />
           <Route path={`/account/verify/${localStorage.getItem('register')}`} element={<Verify email={email}></Verify>} />
         </Routes>
         <Footer />

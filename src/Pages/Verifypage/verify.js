@@ -18,9 +18,14 @@ const Verify = (props) => {
             }
         })
         .then((res)=>{
-            console.log(res.status);
-            alert(`email: ${localStorage.getItem('register')} xác nhận thành công!!`)
-            window.location.replace("http://localhost:3000");
+            console.log(res);
+            if (res.data.token) {
+                localStorage.setItem("token", JSON.stringify(res.data));
+                alert(`email: ${localStorage.getItem('register')} xác nhận thành công!!`)
+                window.location.replace("http://localhost:3000");
+              }
+            return res.data;
+
         })
     }
     return ( 
