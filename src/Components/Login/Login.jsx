@@ -28,7 +28,7 @@ const Login = (props) =>{
                 localStorage.removeItem('register');
                 localStorage.setItem('user',account.email);
                 localStorage.setItem('productLength',0);
-                localStorage.setItem('product',[]);
+                localStorage.setItem('product',"");
                 const token = '123';
                 localStorage.setItem('token',token);
                 window.location.replace('http://localhost:3000');

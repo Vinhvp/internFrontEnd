@@ -41,30 +41,20 @@ const ProductDetails = (props) => {
         )
     )})
     let detailProduct = dataDetails.filter((data) => data['id'] == id);
-    let a = [];  
+   
     const getProduct = () =>{
         {Boolean(localStorage.getItem('token')) && localStorage.setItem("productLength", parseInt(localStorage.getItem("productLength"))+1);}
         
-        
+        let item = { "img": `${detailProduct[0].img}`,
+        "title": `${detailProduct[0].title}`,
+        "id": `${detailProduct[0].id}`,
+        "price": `${detailProduct[0].price}`,
+        "quantity": `${quantity}`,
+        "size": `${size}`
+        }
         setData.dataCart(prevState => {
-            a.push( 
-                { "img": `${detailProduct[0].img}`,
-                "title": `${detailProduct[0].title}`,
-                "id": `${detailProduct[0].id}`,
-                "price": `${detailProduct[0].price}`,
-                "quantity": `${quantity}`,
-                "size": `${size}`
-                }
-            );
-            return [...prevState, 
-                { "img": `${detailProduct[0].img}`,
-                "title": `${detailProduct[0].title}`,
-                "id": `${detailProduct[0].id}`,
-                "price": `${detailProduct[0].price}`,
-                "quantity": `${quantity}`,
-                "size": `${size}`
-                }
-            ]
+            {Boolean(localStorage.getItem('token')) && localStorage.setItem('product',JSON.stringify([...prevState, item]))}
+            return [...prevState, item];
 
         }
         
@@ -88,7 +78,7 @@ const ProductDetails = (props) => {
             setQuantity(quantity-1);
         }
     }
-    console.log(a);
+   
     return ( 
         <>
             <styled.ProductDetails>

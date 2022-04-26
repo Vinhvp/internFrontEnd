@@ -11,6 +11,7 @@ import Register from '../Register/Register';
 import { Routes, Route, Link,useLocation} from "react-router-dom";
 import {useContext} from 'react';
 import {tool} from '../../App';
+const axios = require('axios');
 
 export const getName = createContext();
 const Header = (props) => {
@@ -23,11 +24,22 @@ const Header = (props) => {
     const setValue = useContext(tool)
     const userToken = Boolean(localStorage.getItem('token'));
     const signOut = () =>{
-        localStorage.removeItem('user'); 
-        localStorage.removeItem('token');
-        localStorage.removeItem('productLength');
-        alert('Sign out successful!!');
-        window.location.replace("http://localhost:3000");
+        axios({
+            method: 'post',
+            url: 'http://localhost:7000/account/productDetails',
+            data: JSON.stringify(localStorage.getItem('product'))
+        })
+        .then((response)=>{
+            localStorage.removeItem('user'); 
+            localStorage.removeItem('token');
+            if(response.data.status == 'okay'){
+                localStorage.removeItem('product');
+                localStorage.removeItem('productLength');
+                alert('Sign out successful!!');
+                window.location.replace("http://localhost:3000");
+            }
+        })
+        
     }
     const getValue = (e) => {
        setValue.search((e.target.value));
