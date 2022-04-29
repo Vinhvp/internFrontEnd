@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const LoginCard = styled.div
 `   
+
     z-index: 99;
     position: absolute;
     top: 50%;
@@ -22,7 +23,6 @@ export const LoginCard = styled.div
         text-align: center;
         color: var(--dark-grey);
     }
-
 `
 
 export const Checkbox = styled.div`
@@ -43,6 +43,12 @@ export const Checkbox = styled.div`
 export const Container = styled.div`
     width: 395px;
     margin: 0 auto;
+    .link{
+        font-size: 14px;
+        color: var(--pumpkin-orange); 
+        font-weight:600;
+        cursor: pointer;
+    }
     section{
         p{
             font-family: Montserrat;

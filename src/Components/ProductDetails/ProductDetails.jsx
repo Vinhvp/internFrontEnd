@@ -23,7 +23,11 @@ const ProductDetails = (props) => {
     const [size, setSize] = useState('S');
     
     let { id } = useParams();
-    const dataRecomends = props.dataRecommend.filter((data)=> data['id'] != id);
+    let detailProduct = dataDetails.filter((data) => data['_id'] == id);
+    const cate = detailProduct[0].category;
+    
+    const dataRecomends = (dataDetails.filter((data)=> data.category == cate)).filter((data)=> data['_id'] != id);
+    
   
     const recommendData = dataRecomends.map((e,i)=>{
         return ( (i<8) &&
@@ -40,15 +44,13 @@ const ProductDetails = (props) => {
                 </div>
         )
     )})
-    let detailProduct = dataDetails.filter((data) => data['id'] == id);
-   
     const getProduct = () =>{
         {Boolean(localStorage.getItem('token')) && localStorage.setItem("productLength", parseInt(localStorage.getItem("productLength"))+1);}
         
         
         let item = { "img": `${detailProduct[0].img}`,
         "title": `${detailProduct[0].title}`,
-        "id": `${detailProduct[0].id}`,
+        "id": `${detailProduct[0]['_id']}`,
         "price": `${detailProduct[0].price}`,
         "quantity": `${quantity}`,
         "size": `${size}`
@@ -58,7 +60,7 @@ const ProductDetails = (props) => {
             url: 'http://localhost:7000/account/productDetails',
             data: {
             "user": localStorage.getItem('user'),
-            "id": `${detailProduct[0].id}`,
+            "id": `${detailProduct[0]['_id']}`,
             "quantity": `${quantity}`,
             "size": `${size}`
             }

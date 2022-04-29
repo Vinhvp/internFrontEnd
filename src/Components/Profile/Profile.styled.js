@@ -3,6 +3,7 @@ export const ProfileInfo = styled.div`
 
 .Profile_Editor{
     width: 430px;
+    height: 710px;
     display: flex;
     flex-direction: column;
     &_title{
@@ -30,7 +31,7 @@ export const ProfileInfo = styled.div`
     &_form{
         width: 430px;
         height:191px;
-        background: #f9f9f9;
+        background: var(--white-four);
         margin-top: 13px;
         .name{
             margin-top: 26px;
@@ -54,6 +55,7 @@ export const ProfileInfo = styled.div`
 export const ProfileEditor1 = styled.div`
     .Profile_Editor{
         width: 430px;
+        height: 710px;
         display: flex;
         flex-direction: column;
         &_title{
@@ -127,6 +129,7 @@ export const ProfileChange = styled.div`
    
     .Profile_Change{
         width: 430px;
+        height: 710px;
         display: flex;
         flex-direction: column;
         &_title{
@@ -145,25 +148,49 @@ export const ProfileChange = styled.div`
             }
         }
         &_form{
+            position: relative;
             width: 481px;
             height:401px;
-            background: #f9f9f9;
+            background: linear-gradient(90deg, var(--white-four), grey);
             padding-left: 50px;
             .nameEmail{
-                margin: 26px 0 0 0;
-                padding: 0;
+                p{
+                    font-family: Montserrat;
+                    font-size: 12px;
+                    font-weight: bold;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.5;
+                    letter-spacing: normal;
+                    color: var(--dark-grey);}
+                    margin: 26px 0 0 0;
+                    padding: 0;
                 input{
-                    margin-bottom: 33px;
+                    padding: 0 8px;
+                    width: 395px;
+                    height: 46px;
+                    background: var(--white-four);
+                    border: 0;
+            
+                    &::placeholder{
+                        opacity: 0.3;
+                        font-family: Montserrat;
+                        font-size: 14px;
+                        font-weight: 500;
+                        font-stretch: normal;
+                        font-style: normal;
+                        line-height: 1.57;
+                        letter-spacing: normal;
+                        color: var(--greyish-brown);
+                    }
                 }
             }
-            .button{
-                text-align: right;
-                margin-right: 50px;
+           .buttonBox{
+               position: absolute;
+               right: 36px;
+               bottom: 60px;
             }
-            .button{
-                text-align: right;
-                margin-right: 50px;
-            }
+            
             b{
                 width: 39px;
                 height: 18px;

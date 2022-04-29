@@ -39,13 +39,9 @@ function useQuery() {
 // }
 //popularity, az, lowest, highest
 //get API
-var dataa = []
-let dataApi = 'http://localhost:7000/productList/get';
-async function fetchAPI(){
-    const res = await fetch(dataApi);
-    return await res.json();
-}
-fetchAPI().then(data => {dataa = data.map(e=>e)})
+
+
+
 
 const ProductBranch = (props) => {
     const setDataRecommend = useContext(tool);
@@ -54,12 +50,25 @@ const ProductBranch = (props) => {
     let categorys = urlSearch.get("name");
     const [sort,setSort] = useState();
     const [dataR, setdataR] = useState([]);
+    const [page,setPage] = useState(1);
+    const [totalProduct, setTotalProduct] = useState(0)
     const searchValue = props.searchValue;
-    
-    useEffect(()=>{
-        
-        if(categorys ==='men' ||categorys ==='girls' || categorys ==='boys' || categorys ==='ladies'){
-            let datas = [...dataa.filter((data) => data.category === categorys)];
+    const leftArrow = ()=>{
+        if(page>1){
+            setPage(page-1);    
+        }
+    }
+    const rightArrow = ()=>{
+        if(page < Math.floor(totalProduct/20) + 1){
+            setPage(page+1);
+        }
+    }
+    useEffect(()=>{ 
+        axios.get('http://localhost:7000/productList/get',{ params: {category: categorys, pages: page } })
+        .then((res)=>{
+            
+            let datas = [...res.data.product.filter((data) => data.category === categorys)];
+            setTotalProduct(res.data.productLength);
             setdataR(datas)
             if(sort==='lowest'){
                 setdataR(datas.sort((a,b) => a['price'] - b['price']));
@@ -78,14 +87,16 @@ const ProductBranch = (props) => {
                 }))
             }
             setDataRecommend.DataRecommend(dataR);
-        }
-        
-
-    },[sort, categorys,searchValue])
-    
+            
+        })
+    },[sort, categorys,searchValue, page])
+    useEffect(()=>{
+        setPage(1);
+    },
+    [categorys])
     const postData = (data) =>{
         return (data.map((e, index)=>{
-            let productLink = `/product/${e.id}`
+            let productLink = `/product/${e['_id']}`
             return <Link to={productLink}><Card key={index} img = {e["img"]} title={e['title']} price={`$${e['price']}.00`}/></Link>
         }))
     }
@@ -106,9 +117,9 @@ const ProductBranch = (props) => {
                            <div className="selectLabel"> 
                                <SelectLabels setSort={setSort}/>
                                 <styled.breadcrumbs>
-                                    <ArrowLeftIcon></ArrowLeftIcon>
-                                    <div>1 / 100</div>
-                                    <ArrowRightIcon></ArrowRightIcon>
+                                    <ArrowLeftIcon onClick={leftArrow} style={{cursor:'pointer'}}></ArrowLeftIcon>
+                                    <div>{page} / {Math.floor(totalProduct/20) + 1 }</div>
+                                    <ArrowRightIcon className='rightIcon' onClick={rightArrow} style={{cursor:'pointer'}}></ArrowRightIcon>
                                 </styled.breadcrumbs>
                            </div>
                            <styled.ProductItem>

@@ -13,11 +13,11 @@ const ProfileInfo = () => {
                         <div className="Profile_Editor_form">
                             <div className="name" style={{margin:'26px 0 31px 0'}}>
                                 <div style={{color:'var(--dark-grey)'}}>Name</div>
-                                <div>Vo Phu Vinh</div>
+                                <div>{localStorage.getItem('name')}</div>
                             </div>
                             <div className="email">
                             <div style={{color:'var(--dark-grey)'}}>Email</div>
-                                <div>vinhvp@dgroup.co</div>
+                                <div>{localStorage.getItem('user')}</div>
                             </div>
                         </div>
                         

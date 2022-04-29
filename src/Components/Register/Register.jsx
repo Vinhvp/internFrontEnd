@@ -62,7 +62,8 @@ const Register = (props) => {
 
 
                         </styled.Text>
-                        <ButtonHome onClick={onSubmitEvent} type='submit' error={error} name="Register" color='var(--white-two)' mt='51px' mb='70px'></ButtonHome>
+                        {error.EMAIL || error.PASSWORD ? (<ButtonHome  type="submit" onClick={onSubmitEvent} error={error}  name="Register" bgcolor="var(--white-four);" mt='51px' mb='70px' disabled={'disabled'}></ButtonHome>) :(<ButtonHome type="submit" onClick={onSubmitEvent} error={error}  name="Register" bgcolor="var(--white-four);" mt='51px' mb='70px'></ButtonHome>)}
+                        
                     </form>
                     <div style={{textAlign: 'center'}}>
                         <p style={{display:"inline-block"}}>Do you have an account?</p>

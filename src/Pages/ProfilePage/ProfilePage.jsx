@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import * as styled from './ProfilePage.styled';
 import Header from '../../Components/Header/Header';
 import Profile from '../../Components/Profile/Profile';
-
+import ProfileChange from "../../Components/Profile/ProfileChange";
+import ProfileInfo from "../../Components/Profile/ProfileInfo";
 const ProfilePage = () => {
     const [toggleActive, setToggleActive] = useState(true);
     const handleToggle = () =>{
@@ -13,7 +14,6 @@ const ProfilePage = () => {
     return ( 
         <>
             
-            <Header></Header>
             <styled.ProfilePage>
                 <div className="Profile_Setting">
                     <h2>My Account</h2>
@@ -26,7 +26,8 @@ const ProfilePage = () => {
                     </styled.dactive>
 
                 </div>
-                <Profile></Profile>
+                {toggleActive ? (<ProfileInfo></ProfileInfo>) : (<ProfileChange></ProfileChange>)}
+               
             </styled.ProfilePage>  
         </>
      );

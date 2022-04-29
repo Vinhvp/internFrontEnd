@@ -38,7 +38,7 @@ export const Login = styled.div`
     width: 250px;
     align-items: center;
     .profileImg{
-        cursor:'pointer'; overflow:hidden;
+        cursor:pointer; overflow:hidden;
          width: 50px; height: 50px; border-radius:50%;
     }
 `

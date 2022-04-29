@@ -12,6 +12,8 @@ import ShoppingCartPage from './Pages/ShoppingCartPage/ShoppingCartPage';
 import ProfilePage from './Pages/ProfilePage/ProfilePage';
 import ProductDetails from './Components/ProductDetails/ProductDetails';
 import Verify from './Pages/Verifypage/verify';
+import ForgotPass from '../src/Components/Forgot/ForgotPass';
+import NotFoundPage from './Pages/NotFoundPage/notFoundPage';
 const axios = require('axios');
 export const tool = createContext();
 
@@ -35,7 +37,7 @@ function App() {
       })
     }
   },[])
-  
+  const getToken = localStorage.getItem('token');
   return (
     
     <>
@@ -53,6 +55,8 @@ function App() {
           <Route path="/product/:id" element={<ProductDetails dataRecommend={dataRecommend} />} />
           <Route path="/cart" element={<ShoppingCartPage productCarts={productCart}/>} />
           <Route path={`/account/verify/${localStorage.getItem('register')}`} element={<Verify email={email}></Verify>} />
+          {getToken ? <Route path="/editAccount" element={<ProfilePage />} /> :  <Route path="/editAccount" element={<NotFoundPage />} />}
+          <Route path="account/forgotPass" element={<ForgotPass />} />
         </Routes>
         <Footer />
       </tool.Provider>
