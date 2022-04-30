@@ -38,6 +38,7 @@ function App() {
     }
   },[])
   const getToken = localStorage.getItem('token');
+  const verify = localStorage.getItem('verifyToken');
   return (
     
     <>
@@ -54,7 +55,7 @@ function App() {
           <Route path="/category" element={<Product searchValue={value}/>} />
           <Route path="/product/:id" element={<ProductDetails dataRecommend={dataRecommend} />} />
           <Route path="/cart" element={<ShoppingCartPage productCarts={productCart}/>} />
-          <Route path={`/account/verify/${localStorage.getItem('register')}`} element={<Verify email={email}></Verify>} />
+          <Route path={`/account/verify/${verify}`} element={<Verify email={email}></Verify>} />
           {getToken ? <Route path="/editAccount" element={<ProfilePage />} /> :  <Route path="/editAccount" element={<NotFoundPage />} />}
           <Route path="account/forgotPass" element={<ForgotPass />} />
         </Routes>

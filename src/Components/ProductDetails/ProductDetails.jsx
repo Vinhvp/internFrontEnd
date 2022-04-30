@@ -21,6 +21,28 @@ fetchAPI().then(data => {dataDetails = data.map(e => e)})
 const ProductDetails = (props) => {
     const setData = useContext(tool);
     const [size, setSize] = useState('S');
+    const [color, setColor] = useState('#ff5f6d');
+    const colorList = ['#ff5f6d','var(--light-gold-40)','var(--cornflower-40)','var(--pale-orange-40)','rgba(61, 61, 63, 0.5)','rgba(237, 237, 237, 0.5)']
+    const handleColor = (e) =>{
+        const currentColor = (e.target.style.backgroundColor);
+        setColor(currentColor);
+    }
+    const colorRender = () => (
+        colorList.map((e)=>{
+            return (
+                
+                <>
+                  <svg data-testid="CircleIcon" onClick={handleColor} className={ e==color ? 'activeColor':'color'} style={{width:'30px',
+                    height: '30px',
+                    backgroundColor: e,
+                    borderRadius: '50%',
+                    marginRight:'10px'
+                    }}></svg>
+                    
+                </>
+            )
+        })
+    );
     
     let { id } = useParams();
     let detailProduct = dataDetails.filter((data) => data['_id'] == id);
@@ -53,7 +75,8 @@ const ProductDetails = (props) => {
         "id": `${detailProduct[0]['_id']}`,
         "price": `${detailProduct[0].price}`,
         "quantity": `${quantity}`,
-        "size": `${size}`
+        "size": `${size}`,
+        "color": `${color}`
         }
         axios({
             method: 'post',
@@ -62,17 +85,17 @@ const ProductDetails = (props) => {
             "user": localStorage.getItem('user'),
             "id": `${detailProduct[0]['_id']}`,
             "quantity": `${quantity}`,
-            "size": `${size}`
+            "size": `${size}`,
+            "color": `${color}`
             }
+        }).then((res)=>{
+            const products = res.data.products;
+            
         })
-        
         setData.dataCart(prevState => {
             return [...prevState, item];
-        }
+        })
         
-
-            
-        )
 
     }
     
@@ -90,7 +113,6 @@ const ProductDetails = (props) => {
             setQuantity(quantity-1);
         }
     }
-   
     return ( 
         <>
             <styled.ProductDetails>
@@ -127,13 +149,13 @@ const ProductDetails = (props) => {
                             <div  style={{marginTop:'9px'}}>
                                 <b>Size</b>
                                 <div>
-                                    <styled.Size value='S'  bgcolor='var(--pale-orange)' color='var(--white)'>
+                                    <styled.Size className={size=='S' && 'activeSize'} value='S'  bgcolor='var(--pale-orange)' color='var(--white)'>
                                     S
                                     </styled.Size>
-                                    <styled.Size value='M' onClick={getSize} bgcolor='var(--white-two)' color='var(--dark-grey)'>
+                                    <styled.Size className={size=='M' && 'activeSize'} value='M' onClick={getSize} bgcolor='var(--white-two)' color='var(--dark-grey)'>
                                     M
                                     </styled.Size >
-                                    <styled.Size value='L' onClick={getSize} bgcolor='var(--white-four)' color='var(--greyish-brown)'>
+                                    <styled.Size className={size=='L' && 'activeSize'} value='L' onClick={getSize} bgcolor='var(--white-four)' color='var(--greyish-brown)'>
                                     L
                                     </styled.Size >
                                 </div>
@@ -141,35 +163,7 @@ const ProductDetails = (props) => {
                             <div>
                                 <b>Color</b>
                                 <div>
-                                    <CircleIcon style={{width:'30px',
-                                    height: '30px',
-                                    color: '#ff5f6d',
-                                    marginRight:'10px'
-                                    }}/>
-                                    <CircleIcon style={{width:'30px',
-                                    height: '30px',
-                                    color: 'var(--light-gold-40)',
-                                    marginRight:'10px'
-                                    }}/>
-                                    <CircleIcon style={{width:'30px',
-                                    height: '30px',
-                                    color: 'var(--cornflower-40)',
-                                    marginRight:'10px'
-                                    }}/>
-                                    <CircleIcon style={{width:'30px',
-                                    height: '30px',
-                                    color: 'var(--pale-orange-40)',
-                                    marginRight:'10px'
-                                    }}/>
-                                    <CircleIcon style={{width:'30px',
-                                    height: '30px',
-                                    color: 'rgba(61, 61, 63, 0.5)',
-                                    marginRight:'10px'
-                                    }}/>
-                                    <CircleIcon style={{width:'30px',
-                                    height: '30px',
-                                    color: 'rgba(237, 237, 237, 0.5)',
-                                    }}/>
+                                    {colorRender()}
                                 </div>
                             </div>
                             <div style={{display: 'flex', justifyContent:'flex-start', alignItems:'center', marginBottom:'40px'}}>

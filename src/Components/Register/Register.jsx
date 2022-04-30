@@ -31,9 +31,10 @@ const Register = (props) => {
         })
         .then((response)=>{
             localStorage.setItem('register', account.email);
+            localStorage.setItem('verifyToken',response.data.verifyToken);
             if(response.data.status == 'true'){
-                console.log(account.email);
-                setEmails.email(account.email);
+                console.log(response.data.verifyToken);
+                setEmails.email(response.data.verifyToken);
                 alert('Please Verify Your Email !!');
                 window.location.replace("http://localhost:3000");
             }

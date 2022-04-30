@@ -6,13 +6,21 @@ import Button from '../Button/Button';
 import {tool} from '../../App';
 const ShoppingCart = (props) => {
     const cartItem = useContext(tool);
+    console.log(cartItem.data);
     let total = cartItem.data.reduce((ammu,current)=>{
         return (current.price*current.quantity + ammu);
     },0)
    
     
  
-    const dataRender = cartItem.data.map((e)=>{
+    const dataRender = cartItem.data.map((e,i)=>{
+        let quantity = e.quantity;
+        const incre = () => {
+            quantity+=1;
+        }
+        const decre = () =>{
+            quantity-=1;
+        }
         return(
             <styled.cartListItem>
                 <div>
@@ -26,20 +34,22 @@ const ShoppingCart = (props) => {
                     </div>
                 </div>
                 <div>
-                <CircleIcon style={{width:'30px',
-                        height: '30px',
-                        color: '#ff5f6d',
-                        }}/>
+                <svg data-testid="CircleIcon" style={{width:'30px',
+                    height: '30px',
+                    backgroundColor: e.color,
+                    borderRadius: '50%',
+                    marginRight:'10px'
+                    }}></svg>
                 </div>
                 <div className='Size'>{e.size}</div>
                 <div>
                     <styled.Quantity>
-                        <button>-</button>
-                        <h5>1</h5>
-                        <button>+</button>
+                        <button onClick={decre}>-</button>
+                        <h5>{quantity}</h5>
+                        <button onClick={incre}>+</button>
                     </styled.Quantity>
                 </div>
-                <div className='Amount'>{e.quantity}</div>
+                <div className='Amount'>{quantity}</div>
             </styled.cartListItem>
         )
     })

@@ -11,7 +11,7 @@ const Verify = (props) => {
         e.preventDefault();
         axios({
             method: 'post',
-            url:'http://localhost:7000/account/verify/'+localStorage.getItem('register'),
+            url:'http://localhost:7000/account/verify/'+ props.email,
             data: {
                 email: localStorage.getItem('register'),
                 verify: 'true'
@@ -20,7 +20,8 @@ const Verify = (props) => {
         .then((res)=>{
             console.log(res);
             if (res.data.token) {
-                localStorage.setItem("token", JSON.stringify(res.data));
+                // localStorage.setItem("token", JSON.stringify(res.data));
+                localStorage.removeItem('verifyToken');
                 alert(`email: ${localStorage.getItem('register')} xác nhận thành công!!`)
                 window.location.replace("http://localhost:3000");
               }

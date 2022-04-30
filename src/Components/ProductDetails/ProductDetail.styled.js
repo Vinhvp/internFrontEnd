@@ -53,6 +53,20 @@ export const Detail2 = styled.div`
     height: 550px;
     display: flex;
     flex: 1;
+    .color{
+        &:hover{
+            box-shadow: 0px 0px 9px 3px var(--pale-orange);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    }
+    .activeSize{
+        box-shadow: 0px 0px 9px 3px var(--pale-orange);
+    }
+    .activeColor{
+        border-radius: 50%;
+        box-shadow: 0px 0px 9px 3px var(--pale-orange);
+    }
     img{
         height: 540px;
         width: 379px;
@@ -184,6 +198,10 @@ export const Size = styled.button`
     font-style: normal;
     line-height: 1.57;
     letter-spacing: normal;
+    &:hover{
+        box-shadow: 0px 0px 9px 3px var(--pale-orange);
+    }
+   
 `
 export const Quantity = styled.button`
     width: 108px;
