@@ -9,19 +9,49 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import {useParams} from 'react-router-dom';
 import {tool} from '../../App';
+
 const axios = require('axios');
 //get API
 var dataDetails = [];
-let dataApi = 'http://localhost:7000/productDetails/get';
-async function fetchAPI(){
-    const res = await fetch(dataApi);
-    return await res.json();
-}
-fetchAPI().then(data => {dataDetails = data.map(e => e)})
+// let dataApi = 'http://localhost:7000/productDetails/get';
+// async function fetchAPI(){
+//     const res = await fetch(dataApi);
+//     console.log(res);
+//     return await res.json();
+// }
+// fetchAPI().then(data => {dataDetails = data.map(e => e)})
+
+axios.get('http://localhost:7000/productDetails/get')
+.then((res)=>{
+    dataDetails = res.data.products.map((e)=>e);
+})
+
 const ProductDetails = (props) => {
+    let { id } = useParams();
     const setData = useContext(tool);
     const [size, setSize] = useState('S');
     const [color, setColor] = useState('#ff5f6d');
+    const [items,setItems] = useState([]);
+    const [stock,setStock] = useState({
+        S: 0,
+        M: 0,
+        L: 0
+    })
+    const [flag,setFlag] = useState(true);
+    useEffect(()=>{
+        axios.get('http://localhost:7000/productDetails/sizestock', {params:{ 
+            sizes: size,
+            id: id
+        }})
+        .then((res)=>{
+        setStock({
+            S: res.data.data.sizeS,
+            M: res.data.data.sizeM,
+            L: res.data.data.sizeL
+        })
+    })
+    },[size])
+    
     const colorList = ['#ff5f6d','var(--light-gold-40)','var(--cornflower-40)','var(--pale-orange-40)','rgba(61, 61, 63, 0.5)','rgba(237, 237, 237, 0.5)']
     const handleColor = (e) =>{
         const currentColor = (e.target.style.backgroundColor);
@@ -44,7 +74,6 @@ const ProductDetails = (props) => {
         })
     );
     
-    let { id } = useParams();
     let detailProduct = dataDetails.filter((data) => data['_id'] == id);
     const cate = detailProduct[0].category;
     
@@ -66,10 +95,8 @@ const ProductDetails = (props) => {
                 </div>
         )
     )})
-    const getProduct = () =>{
+    const getProduct = (e) =>{
         {Boolean(localStorage.getItem('token')) && localStorage.setItem("productLength", parseInt(localStorage.getItem("productLength"))+1);}
-        
-        
         let item = { "img": `${detailProduct[0].img}`,
         "title": `${detailProduct[0].title}`,
         "id": `${detailProduct[0]['_id']}`,
@@ -78,19 +105,23 @@ const ProductDetails = (props) => {
         "size": `${size}`,
         "color": `${color}`
         }
-        axios({
-            method: 'post',
-            url: 'http://localhost:7000/account/productDetails',
-            data: {
-            "user": localStorage.getItem('user'),
-            "id": `${detailProduct[0]['_id']}`,
-            "quantity": `${quantity}`,
-            "size": `${size}`,
-            "color": `${color}`
-            }
-        }).then((res)=>{
-            const products = res.data.products;
+      
+        // axios({
+        //     method: 'post',
+        //     url: 'http://localhost:7000/account/productDetails',
+        //     data: {
+        //     "user": localStorage.getItem('user'),
+        //     "id": `${detailProduct[0]['_id']}`,
+        //     "quantity": `${quantity}`,
+        //     "size": `${size}`,
+        //     "color": `${color}`
+        //     }
+        // }).then((res)=>{
+        //     const products = res.data.products;
             
+        // })
+        setItems(prevState => {
+            return [...prevState, item];
         })
         setData.dataCart(prevState => {
             return [...prevState, item];
@@ -98,17 +129,40 @@ const ProductDetails = (props) => {
         
 
     }
+
+    useEffect(()=>{
+        const memo = {};
+        function getKey(obj){
+        return `${obj['id']}_${obj['size']}}`;
+        }
+        items.forEach((obj)=>{
+        const key = getKey(obj);
+        memo[key] = obj;
+        })
+        const result = Object.values(memo);
+       
+      
+    },[items])
     
     const [quantity, setQuantity] = useState(1);
     const getSize =(e)=>{
         setSize(e.target.value);
     }
-   
-
     const incrementClick = () => {
+        if(quantity > stock[size]){
+            setFlag(false);
+        }
+        if(quantity <= stock[size]){
+            setFlag(true);
+        }
         setQuantity(quantity+1);
+       
     }
+
     const decrementClick = () => {
+        if(quantity <= stock[size]){
+            setFlag(true);
+        }
         if(!(quantity <= 1)){
             setQuantity(quantity-1);
         }
@@ -149,7 +203,7 @@ const ProductDetails = (props) => {
                             <div  style={{marginTop:'9px'}}>
                                 <b>Size</b>
                                 <div>
-                                    <styled.Size className={size=='S' && 'activeSize'} value='S'  bgcolor='var(--pale-orange)' color='var(--white)'>
+                                    <styled.Size className={size=='S' && 'activeSize'} value='S'  onClick={getSize} bgcolor='var(--pale-orange)' color='var(--white)'>
                                     S
                                     </styled.Size>
                                     <styled.Size className={size=='M' && 'activeSize'} value='M' onClick={getSize} bgcolor='var(--white-two)' color='var(--dark-grey)'>
@@ -175,9 +229,7 @@ const ProductDetails = (props) => {
                                 </styled.Quantity>
                             </div>
                             <div style={{marginBottom:'26px'}}>
-                                <Button onClick={getProduct} name='Add to cart' w='429px' h='50px' bgcolor='#5f6dff' color='var(--white)' >
-
-                                </Button>
+                              {flag ? (<Button onClick={getProduct} name='Add to cart' w='429px' h='50px' bgcolor='#5f6dff' color='var(--white)' ></Button>) : (<Button onClick={getProduct} name='Add to cart' w='429px' h='50px' bgcolor='grey' color='var(--white)' disabled='disabled'></Button>)}
                             </div>
                             <hr></hr>
                             <section style={{margin:'0', display: 'flex', flexDirection:'column'}}>

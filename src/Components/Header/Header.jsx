@@ -33,10 +33,17 @@ const Header = (props) => {
     const setValue = useContext(tool)
     const userToken = Boolean(localStorage.getItem('token'));
     const signOut = () =>{
-        localStorage.removeItem('user'); 
         localStorage.removeItem('token');
         localStorage.removeItem('product');
         localStorage.removeItem('productLength');
+        if(localStorage.getItem('cart')){
+            axios.post('http://localhost:7000/account/productDetails',{
+                user: localStorage.getItem('user'),
+                products: JSON.parse(localStorage.getItem('cart'))
+            })
+        }
+        localStorage.removeItem('user'); 
+        localStorage.removeItem('cart');
         alert('Sign out successful!!');
         window.location.replace("http://localhost:3000");
     }
