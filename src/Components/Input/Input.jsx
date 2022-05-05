@@ -11,9 +11,15 @@ const Input = (props) => {
     
     //function get value from input
     const handleGetValue = (e) => {
-        
         let errorM = pushErr(e.target.value)
         setValue(e.target.value);
+        
+        props.getValue(prevState =>{
+            return{
+                ...prevState,
+                [props.name]: e.target.value
+            }
+        })
         setErrorMessage(errorM);
         props.setError(prevState => {
             return {
@@ -38,7 +44,7 @@ const Input = (props) => {
         
         <styled.InputContainer mb={props.mb} mt={props.mt} >
             <label htmlFor={props.label}>{props.label}</label>
-            <styled.Input error={Boolean(errorMessage)} onChange={handleGetValue} type={props.type} name={props.name} placeholder={props.placeholder}/>
+            <styled.Input error={Boolean(errorMessage)} onChange={handleGetValue} type={props.type} name={props.name} placeholder={props.placeholder} disabled={props.disable}/>
             <p>{errorMessage}</p>
         </styled.InputContainer>
         

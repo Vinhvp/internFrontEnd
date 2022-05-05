@@ -1,18 +1,17 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext,useState} from 'react';
 import * as styled from './ShoppingCart.styled';
 import CircleIcon from '@mui/icons-material/Circle';
-
 import Button from '../Button/Button';
 import {tool} from '../../App';
+const axios = require('axios');
 const ShoppingCart = (props) => {
     const cartItem = useContext(tool);
-    let total = cartItem.data.reduce((ammu,current)=>{
+    const cartLocal = JSON.parse(localStorage.getItem('cart'));
+    if(Boolean(cartLocal))
+    {var total = cartLocal.reduce((ammu,current)=>{
         return (current.price*current.quantity + ammu);
     },0)
-   
-    
- 
-    const dataRender = cartItem.data.map((e)=>{
+    var dataRender = cartLocal.map((e,i)=>{
         return(
             <styled.cartListItem>
                 <div>
@@ -26,23 +25,37 @@ const ShoppingCart = (props) => {
                     </div>
                 </div>
                 <div>
-                <CircleIcon style={{width:'30px',
-                        height: '30px',
-                        color: '#ff5f6d',
-                        }}/>
+                <svg data-testid="CircleIcon" style={{width:'30px',
+                    height: '30px',
+                    backgroundColor: e.color,
+                    borderRadius: '50%',
+                    marginRight:'10px'
+                    }}></svg>
                 </div>
                 <div className='Size'>{e.size}</div>
                 <div>
                     <styled.Quantity>
-                        <button>-</button>
-                        <h5>1</h5>
+                        <button >-</button>
+                        <h5>{e.quantity}</h5>
                         <button>+</button>
                     </styled.Quantity>
                 </div>
                 <div className='Amount'>{e.quantity}</div>
             </styled.cartListItem>
         )
-    })
+    })}
+    const checkOutHandle = () =>{
+        console.log('checkout');
+        const date = new Date().toDateString();
+        axios.post('http://localhost:7000/admin/updateOrders/post',{
+            data: localStorage.getItem('cart'),
+            date: date
+        })
+        alert('Checkout successfully !!');
+        window.location.replace('/');
+    }
+    console.log(Boolean(localStorage.getItem('cart')))
+    const token = localStorage.getItem('token');
     return ( 
         <>
         <styled.ShoppingCart>
@@ -69,15 +82,15 @@ const ShoppingCart = (props) => {
                             </div>
                             <div className='cart_total_box_price'>
                                 <p>Total product</p>
-                                <p>${total}.00</p>
+                                <p>${Boolean(total)?total:0}.00</p>
                             </div>
                             <hr></hr>
                             <div className='cart_total_box_price'>
                                 <p style={{fontWeight:'bold'}}>Subtotal</p>
-                                <p style={{fontWeight:'bold'}}>${total}.00</p>
+                                <p style={{fontWeight:'bold'}}>${Boolean(total)?total:0}.00</p>
                             </div>
                         </div>
-                        <Button name='Check out' bgcolor='#ff5f6d' w='330px' h='49px' color='var(--white-two)'></Button>
+                        {dataRender && Boolean(token) ? (<Button name='Check out' onClick={checkOutHandle} bgcolor='#ff5f6d' w='330px' h='49px' color='var(--white-two)'></Button>):(<Button name='Check out' bgcolor='grey' w='330px' h='49px' color='var(--white)' disabled='disabled'></Button>)}
                     </div>
 
             </div>

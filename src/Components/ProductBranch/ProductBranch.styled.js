@@ -84,6 +84,7 @@ export const ProductList = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
+      
     }
    div{
         display: flex;
@@ -98,8 +99,9 @@ export const breadcrumbs = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
     div{
-        width: 52px;
+        width: 30px;
         height: 22px;
         font-family: Montserrat;
         font-size: 14px;
@@ -119,6 +121,7 @@ export const ProductItem = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: row;
+    
     div{
         width: 180px;
         height: 345px;

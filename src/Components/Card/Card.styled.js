@@ -5,7 +5,7 @@ export const Card = styled.span`
     margin-left: 20px;
     width: 190px;
     img{
-        height: 252px;
+        height: 264px;
         padding: 0;
         width: 100%;
         object-fit: cover;

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { width } from '@mui/system';
 export const ShoppingCart = styled.div`
-    height: 712px; /*làm sao để đẩy xuống*/
+    
+    height: 100%; /*làm sao để đẩy xuống*/
     width: 1260px;
     margin: 0 auto;
     padding: 37px 0 53px 0px;

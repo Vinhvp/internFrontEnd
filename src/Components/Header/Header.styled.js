@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 export const HeaderNav = styled.div`
     color: #cccccc;
     padding: 0 129px;
@@ -8,6 +9,12 @@ export const HeaderNav = styled.div`
     justify-content: space-between;
     align-items: center;
 `
+
+// export const HeaderNav2 = styled(HeaderNav)`
+//     color: red;
+//     background: green;
+
+// `
 
 export const SearchBox = styled.div`
     width: 181px;
@@ -37,6 +44,10 @@ export const Login = styled.div`
     justify-content: space-between;
     width: 250px;
     align-items: center;
+    .profileImg{
+        cursor:pointer; overflow:hidden;
+         width: 50px; height: 50px; border-radius:50%;
+    }
 `
 export const Loginbutton = styled.button`
     font-weight: bold;

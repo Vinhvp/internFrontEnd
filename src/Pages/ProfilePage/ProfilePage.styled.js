@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { width } from '@mui/system';
 export const ProfilePage = styled.div`
     width: 678px;
-    height: 267px;
+    height: 710px;
     display: flex;
     justify-content: space-between;
     margin: 37px 0  0 130px;
