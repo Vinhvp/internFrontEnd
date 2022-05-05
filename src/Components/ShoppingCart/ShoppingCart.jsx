@@ -11,7 +11,6 @@ const ShoppingCart = (props) => {
     {var total = cartLocal.reduce((ammu,current)=>{
         return (current.price*current.quantity + ammu);
     },0)
-    
     var dataRender = cartLocal.map((e,i)=>{
         return(
             <styled.cartListItem>
@@ -48,11 +47,15 @@ const ShoppingCart = (props) => {
     const checkOutHandle = () =>{
         console.log('checkout');
         const date = new Date().toDateString();
-        axios.post('http://localhost:7000/admin//updateOrders/post',{
+        axios.post('http://localhost:7000/admin/updateOrders/post',{
             data: localStorage.getItem('cart'),
             date: date
         })
+        alert('Checkout successfully !!');
+        window.location.replace('/');
     }
+    console.log(Boolean(localStorage.getItem('cart')))
+    const token = localStorage.getItem('token');
     return ( 
         <>
         <styled.ShoppingCart>
@@ -87,7 +90,7 @@ const ShoppingCart = (props) => {
                                 <p style={{fontWeight:'bold'}}>${Boolean(total)?total:0}.00</p>
                             </div>
                         </div>
-                        {dataRender ? (<Button name='Check out' onClick={checkOutHandle} bgcolor='#ff5f6d' w='330px' h='49px' color='var(--white-two)'></Button>):(<Button name='Check out' bgcolor='grey' w='330px' h='49px' color='var(--white)' disabled='disabled'></Button>)}
+                        {dataRender && Boolean(token) ? (<Button name='Check out' onClick={checkOutHandle} bgcolor='#ff5f6d' w='330px' h='49px' color='var(--white-two)'></Button>):(<Button name='Check out' bgcolor='grey' w='330px' h='49px' color='var(--white)' disabled='disabled'></Button>)}
                     </div>
 
             </div>

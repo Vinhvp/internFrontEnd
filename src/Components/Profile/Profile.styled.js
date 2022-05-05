@@ -151,7 +151,8 @@ export const ProfileChange = styled.div`
             position: relative;
             width: 481px;
             height:401px;
-            background: linear-gradient(90deg, var(--white-four), grey);
+            background: var(--white-two);
+            border: 1px solid var(--white-four);
             padding-left: 50px;
             .nameEmail{
                 p{
@@ -169,7 +170,7 @@ export const ProfileChange = styled.div`
                     padding: 0 8px;
                     width: 395px;
                     height: 46px;
-                    background: var(--white-four);
+                    background: var(--white-two);
                     border: 0;
             
                     &::placeholder{
@@ -181,7 +182,7 @@ export const ProfileChange = styled.div`
                         font-style: normal;
                         line-height: 1.57;
                         letter-spacing: normal;
-                        color: var(--greyish-brown);
+                        color: grey;
                     }
                 }
             }

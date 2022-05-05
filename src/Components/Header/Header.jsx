@@ -12,6 +12,7 @@ import { Routes, Route, Link,useLocation} from "react-router-dom";
 import {useContext} from 'react';
 import {tool} from '../../App';
 import ForgotPass from '../Forgot/ForgotPass';
+
 const axios = require('axios');
 
 
@@ -54,8 +55,6 @@ const Header = (props) => {
     
         return (
             <div>
-                          
-                
                     <Styled.HeaderNav>
                         <Styled.SearchBox>
                             <Styled.Input onChange={getValue} placeholder='Search' className=''/>

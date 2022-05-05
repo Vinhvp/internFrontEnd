@@ -80,7 +80,7 @@ const ProductBranch = (props) => {
                 setdataR(datas.sort((a,b) => a['title'].localeCompare(b['title'])));
             }
             //khung search truyền giá trị chỉ cần bao gồm và kể cả in thường
-            if(!searchValue==' '){
+            if(searchValue){
                 let regex = new RegExp(`${searchValue.toLowerCase()}`,'g');
                 setdataR(datas.filter((data)=>{
                     return regex.test(data['title'].toLowerCase());

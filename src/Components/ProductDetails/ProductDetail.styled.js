@@ -76,7 +76,7 @@ export const Detail2 = styled.div`
         margin-left: 71px;
         text-align: left;
         h1{
-            width: 378px;
+            width: 500px;
             height: 32px;
             margin: 0 51px 0 0px;
             font-family: Montserrat;

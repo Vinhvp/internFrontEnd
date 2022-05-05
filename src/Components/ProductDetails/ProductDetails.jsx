@@ -233,7 +233,7 @@ const ProductDetails = (props) => {
                             </div>
                             <hr></hr>
                             <section style={{margin:'0', display: 'flex', flexDirection:'column'}}>
-                                <div style={{fontWeight: 'bold'}}>Model wearing size S</div>
+                                <div style={{fontWeight: 'bold'}}>{detailProduct[0].description}</div>
                                 <div>-Chest: 36"</div>
                                 <div>-Length: 25.75"</div>
                             </section>

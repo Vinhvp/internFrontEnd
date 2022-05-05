@@ -18,7 +18,9 @@ import NotFoundPage from './Pages/NotFoundPage/notFoundPage';
 
 const axios = require('axios');
 export const tool = createContext();
-
+if(Boolean(localStorage.getItem('cart'))){
+  localStorage.removeItem('cart');
+}
 function App() {
   const [value, setValue] = useState('');
   const [dataCart, setdataCart] = useState([]);
@@ -39,9 +41,16 @@ function App() {
         setProductCart(product);
       })
     }
+   if(Boolean(localStorage.getItem('register'))){
+    axios.get('http://localhost:7000/account/get',{params:{email: localStorage.getItem('register')}})
+    .then((res)=>{
+      setEmail(res.data.verify);
+    })
+   }
   },[])
   const getToken = localStorage.getItem('token');
-  const verify = localStorage.getItem('verifyToken');
+ 
+  // const verify = localStorage.getItem('verifyToken');
   if(dataCart && dataCart.length > 0){
     const memo = {};
     function getKey(obj){
@@ -82,7 +91,7 @@ function App() {
           <Route path="/category" element={<Product searchValue={value}/>} />
             <Route path="/product/:id" element={<ProductDetails dataRecommend={dataRecommend} />} />
             <Route path="/cart" element={<ShoppingCartPage productCarts={productCart}/>} />
-          <Route path={`/account/verify/${verify}`} element={<Verify email={email}></Verify>} />
+          <Route path={`/account/verify/${email}`} element={<Verify verify={email}></Verify>} />
           {getToken ? <Route path="/editAccount" element={<ProfilePage />} /> :  <Route path="/editAccount" element={<NotFoundPage />} />}
           <Route path="account/forgotPass" element={<ForgotPass />} />
         </Routes>
